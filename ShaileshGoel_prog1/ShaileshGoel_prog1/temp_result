@@ -1,0 +1,707 @@
+Buildfile: /Users/amelie/Teaching/sol_simpledb_437_hw1/build.xml
+
+compile:
+    [javac] Compiling 1 source file to /Users/amelie/Teaching/sol_simpledb_437_hw1/bin/src
+
+testcompile:
+    [javac] Compiling 1 source file to /Users/amelie/Teaching/sol_simpledb_437_hw1/bin/test
+
+runtest:
+    [junit] Running simpledb.systemtest.BufferPolicyTest
+    [junit] Testsuite: simpledb.systemtest.BufferPolicyTest
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.961 sec
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.961 sec
+    [junit] ------------- Standard Output ---------------
+    [junit] BufferPolicyTest creating large table
+    [junit] BufferPolicyTest File Size is  ***101***  pages
+    [junit] -------------------------------------------------------------------
+    [junit] BufferPolicyTest testing LRU on scan
+    [junit] New Buffer, Size 10 pages
+    [junit] Sequential scan of file ID: -1459969170, 3 times
+    [junit] BufferPolicyTest scan complete, reporting number of hits and misses
+    [junit] Number of Hits: 0
+    [junit] Number of Misses: 303
+    [junit] -------------------------------------------------------------------
+    [junit] BufferPolicyTest testing MRU on scan
+    [junit] New Buffer, Size 10 pages
+    [junit] Sequential scan of file ID: -1459969170, 3 times
+    [junit] Hit - Frame9
+    [junit] Hit - Frame8
+    [junit] Hit - Frame7
+    [junit] Hit - Frame6
+    [junit] Hit - Frame5
+    [junit] Hit - Frame4
+    [junit] Hit - Frame3
+    [junit] Hit - Frame2
+    [junit] Hit - Frame1
+    [junit] Hit - Frame0
+    [junit] Hit - Frame9
+    [junit] Hit - Frame8
+    [junit] Hit - Frame7
+    [junit] Hit - Frame6
+    [junit] Hit - Frame5
+    [junit] Hit - Frame4
+    [junit] Hit - Frame3
+    [junit] Hit - Frame2
+    [junit] Hit - Frame1
+    [junit] Hit - Frame0
+    [junit] Hit - Frame9
+    [junit] Hit - Frame8
+    [junit] Hit - Frame7
+    [junit] Hit - Frame6
+    [junit] Hit - Frame5
+    [junit] Hit - Frame4
+    [junit] Hit - Frame3
+    [junit] Hit - Frame2
+    [junit] Hit - Frame1
+    [junit] Hit - Frame0
+    [junit] Hit - Frame9
+    [junit] Hit - Frame8
+    [junit] Hit - Frame7
+    [junit] Hit - Frame6
+    [junit] Hit - Frame5
+    [junit] Hit - Frame4
+    [junit] Hit - Frame3
+    [junit] Hit - Frame2
+    [junit] Hit - Frame1
+    [junit] Hit - Frame0
+    [junit] Hit - Frame9
+    [junit] Hit - Frame8
+    [junit] Hit - Frame7
+    [junit] Hit - Frame6
+    [junit] Hit - Frame5
+    [junit] Hit - Frame4
+    [junit] Hit - Frame3
+    [junit] Hit - Frame2
+    [junit] Hit - Frame1
+    [junit] Hit - Frame0
+    [junit] Hit - Frame9
+    [junit] Hit - Frame8
+    [junit] Hit - Frame7
+    [junit] Hit - Frame6
+    [junit] Hit - Frame5
+    [junit] Hit - Frame4
+    [junit] Hit - Frame3
+    [junit] Hit - Frame2
+    [junit] Hit - Frame1
+    [junit] Hit - Frame0
+    [junit] Hit - Frame9
+    [junit] Hit - Frame8
+    [junit] Hit - Frame7
+    [junit] Hit - Frame6
+    [junit] Hit - Frame5
+    [junit] Hit - Frame4
+    [junit] Hit - Frame3
+    [junit] Hit - Frame2
+    [junit] Hit - Frame1
+    [junit] Hit - Frame0
+    [junit] Hit - Frame9
+    [junit] Hit - Frame8
+    [junit] Hit - Frame7
+    [junit] Hit - Frame6
+    [junit] Hit - Frame5
+    [junit] Hit - Frame4
+    [junit] Hit - Frame3
+    [junit] Hit - Frame2
+    [junit] Hit - Frame1
+    [junit] Hit - Frame0
+    [junit] Hit - Frame9
+    [junit] Hit - Frame8
+    [junit] Hit - Frame7
+    [junit] Hit - Frame6
+    [junit] Hit - Frame5
+    [junit] Hit - Frame4
+    [junit] Hit - Frame3
+    [junit] Hit - Frame2
+    [junit] Hit - Frame1
+    [junit] Hit - Frame0
+    [junit] Hit - Frame9
+    [junit] Hit - Frame8
+    [junit] Hit - Frame7
+    [junit] Hit - Frame6
+    [junit] Hit - Frame5
+    [junit] Hit - Frame4
+    [junit] Hit - Frame3
+    [junit] Hit - Frame2
+    [junit] Hit - Frame1
+    [junit] Hit - Frame0
+    [junit] Hit - Frame9
+    [junit] Hit - Frame8
+    [junit] Hit - Frame7
+    [junit] Hit - Frame6
+    [junit] Hit - Frame5
+    [junit] Hit - Frame4
+    [junit] Hit - Frame3
+    [junit] Hit - Frame2
+    [junit] BufferPolicyTest scan complete, reporting number of hits and misses
+    [junit] Number of Hits: 108
+    [junit] Number of Misses: 1104
+    [junit] -------------------------------------------------------------------
+    [junit] BufferPolicyTest testing LRU on scan
+    [junit] New Buffer, Size 50 pages
+    [junit] Sequential scan of file ID: -1459969170, 3 times
+    [junit] BufferPolicyTest scan complete, reporting number of hits and misses
+    [junit] Number of Hits: 0
+    [junit] Number of Misses: 303
+    [junit] -------------------------------------------------------------------
+    [junit] BufferPolicyTest testing MRU on scan
+    [junit] New Buffer, Size 50 pages
+    [junit] Sequential scan of file ID: -1459969170, 3 times
+    [junit] Hit - Frame49
+    [junit] Hit - Frame48
+    [junit] Hit - Frame47
+    [junit] Hit - Frame46
+    [junit] Hit - Frame45
+    [junit] Hit - Frame44
+    [junit] Hit - Frame43
+    [junit] Hit - Frame42
+    [junit] Hit - Frame41
+    [junit] Hit - Frame40
+    [junit] Hit - Frame39
+    [junit] Hit - Frame38
+    [junit] Hit - Frame37
+    [junit] Hit - Frame36
+    [junit] Hit - Frame35
+    [junit] Hit - Frame34
+    [junit] Hit - Frame33
+    [junit] Hit - Frame32
+    [junit] Hit - Frame31
+    [junit] Hit - Frame30
+    [junit] Hit - Frame29
+    [junit] Hit - Frame28
+    [junit] Hit - Frame27
+    [junit] Hit - Frame26
+    [junit] Hit - Frame25
+    [junit] Hit - Frame24
+    [junit] Hit - Frame23
+    [junit] Hit - Frame22
+    [junit] Hit - Frame21
+    [junit] Hit - Frame20
+    [junit] Hit - Frame19
+    [junit] Hit - Frame18
+    [junit] Hit - Frame17
+    [junit] Hit - Frame16
+    [junit] Hit - Frame15
+    [junit] Hit - Frame14
+    [junit] Hit - Frame13
+    [junit] Hit - Frame12
+    [junit] Hit - Frame11
+    [junit] Hit - Frame10
+    [junit] Hit - Frame9
+    [junit] Hit - Frame8
+    [junit] Hit - Frame7
+    [junit] Hit - Frame6
+    [junit] Hit - Frame5
+    [junit] Hit - Frame4
+    [junit] Hit - Frame3
+    [junit] Hit - Frame2
+    [junit] Hit - Frame1
+    [junit] Hit - Frame0
+    [junit] Hit - Frame49
+    [junit] Hit - Frame48
+    [junit] Hit - Frame47
+    [junit] Hit - Frame46
+    [junit] Hit - Frame45
+    [junit] Hit - Frame44
+    [junit] Hit - Frame43
+    [junit] Hit - Frame42
+    [junit] Hit - Frame41
+    [junit] Hit - Frame40
+    [junit] Hit - Frame39
+    [junit] Hit - Frame38
+    [junit] Hit - Frame37
+    [junit] Hit - Frame36
+    [junit] Hit - Frame35
+    [junit] Hit - Frame34
+    [junit] Hit - Frame33
+    [junit] Hit - Frame32
+    [junit] Hit - Frame31
+    [junit] Hit - Frame30
+    [junit] Hit - Frame29
+    [junit] Hit - Frame28
+    [junit] Hit - Frame27
+    [junit] Hit - Frame26
+    [junit] Hit - Frame25
+    [junit] Hit - Frame24
+    [junit] Hit - Frame23
+    [junit] Hit - Frame22
+    [junit] Hit - Frame21
+    [junit] Hit - Frame20
+    [junit] Hit - Frame19
+    [junit] Hit - Frame18
+    [junit] Hit - Frame17
+    [junit] Hit - Frame16
+    [junit] Hit - Frame15
+    [junit] Hit - Frame14
+    [junit] Hit - Frame13
+    [junit] Hit - Frame12
+    [junit] Hit - Frame11
+    [junit] Hit - Frame10
+    [junit] Hit - Frame9
+    [junit] Hit - Frame8
+    [junit] Hit - Frame7
+    [junit] Hit - Frame6
+    [junit] Hit - Frame5
+    [junit] Hit - Frame4
+    [junit] Hit - Frame3
+    [junit] Hit - Frame2
+    [junit] Hit - Frame1
+    [junit] Hit - Frame0
+    [junit] BufferPolicyTest scan complete, reporting number of hits and misses
+    [junit] Number of Hits: 100
+    [junit] Number of Misses: 203
+    [junit] -------------------------------------------------------------------
+    [junit] BufferPolicyTest testing LRU on scan
+    [junit] New Buffer, Size 120 pages
+    [junit] Sequential scan of file ID: -1459969170, 3 times
+    [junit] Hit - Frame119
+    [junit] Hit - Frame118
+    [junit] Hit - Frame117
+    [junit] Hit - Frame116
+    [junit] Hit - Frame115
+    [junit] Hit - Frame114
+    [junit] Hit - Frame113
+    [junit] Hit - Frame112
+    [junit] Hit - Frame111
+    [junit] Hit - Frame110
+    [junit] Hit - Frame109
+    [junit] Hit - Frame108
+    [junit] Hit - Frame107
+    [junit] Hit - Frame106
+    [junit] Hit - Frame105
+    [junit] Hit - Frame104
+    [junit] Hit - Frame103
+    [junit] Hit - Frame102
+    [junit] Hit - Frame101
+    [junit] Hit - Frame100
+    [junit] Hit - Frame99
+    [junit] Hit - Frame98
+    [junit] Hit - Frame97
+    [junit] Hit - Frame96
+    [junit] Hit - Frame95
+    [junit] Hit - Frame94
+    [junit] Hit - Frame93
+    [junit] Hit - Frame92
+    [junit] Hit - Frame91
+    [junit] Hit - Frame90
+    [junit] Hit - Frame89
+    [junit] Hit - Frame88
+    [junit] Hit - Frame87
+    [junit] Hit - Frame86
+    [junit] Hit - Frame85
+    [junit] Hit - Frame84
+    [junit] Hit - Frame83
+    [junit] Hit - Frame82
+    [junit] Hit - Frame81
+    [junit] Hit - Frame80
+    [junit] Hit - Frame79
+    [junit] Hit - Frame78
+    [junit] Hit - Frame77
+    [junit] Hit - Frame76
+    [junit] Hit - Frame75
+    [junit] Hit - Frame74
+    [junit] Hit - Frame73
+    [junit] Hit - Frame72
+    [junit] Hit - Frame71
+    [junit] Hit - Frame70
+    [junit] Hit - Frame69
+    [junit] Hit - Frame68
+    [junit] Hit - Frame67
+    [junit] Hit - Frame66
+    [junit] Hit - Frame65
+    [junit] Hit - Frame64
+    [junit] Hit - Frame63
+    [junit] Hit - Frame62
+    [junit] Hit - Frame61
+    [junit] Hit - Frame60
+    [junit] Hit - Frame59
+    [junit] Hit - Frame58
+    [junit] Hit - Frame57
+    [junit] Hit - Frame56
+    [junit] Hit - Frame55
+    [junit] Hit - Frame54
+    [junit] Hit - Frame53
+    [junit] Hit - Frame52
+    [junit] Hit - Frame51
+    [junit] Hit - Frame50
+    [junit] Hit - Frame49
+    [junit] Hit - Frame48
+    [junit] Hit - Frame47
+    [junit] Hit - Frame46
+    [junit] Hit - Frame45
+    [junit] Hit - Frame44
+    [junit] Hit - Frame43
+    [junit] Hit - Frame42
+    [junit] Hit - Frame41
+    [junit] Hit - Frame40
+    [junit] Hit - Frame39
+    [junit] Hit - Frame38
+    [junit] Hit - Frame37
+    [junit] Hit - Frame36
+    [junit] Hit - Frame35
+    [junit] Hit - Frame34
+    [junit] Hit - Frame33
+    [junit] Hit - Frame32
+    [junit] Hit - Frame31
+    [junit] Hit - Frame30
+    [junit] Hit - Frame29
+    [junit] Hit - Frame28
+    [junit] Hit - Frame27
+    [junit] Hit - Frame26
+    [junit] Hit - Frame25
+    [junit] Hit - Frame24
+    [junit] Hit - Frame23
+    [junit] Hit - Frame22
+    [junit] Hit - Frame21
+    [junit] Hit - Frame20
+    [junit] Hit - Frame19
+    [junit] Hit - Frame119
+    [junit] Hit - Frame118
+    [junit] Hit - Frame117
+    [junit] Hit - Frame116
+    [junit] Hit - Frame115
+    [junit] Hit - Frame114
+    [junit] Hit - Frame113
+    [junit] Hit - Frame112
+    [junit] Hit - Frame111
+    [junit] Hit - Frame110
+    [junit] Hit - Frame109
+    [junit] Hit - Frame108
+    [junit] Hit - Frame107
+    [junit] Hit - Frame106
+    [junit] Hit - Frame105
+    [junit] Hit - Frame104
+    [junit] Hit - Frame103
+    [junit] Hit - Frame102
+    [junit] Hit - Frame101
+    [junit] Hit - Frame100
+    [junit] Hit - Frame99
+    [junit] Hit - Frame98
+    [junit] Hit - Frame97
+    [junit] Hit - Frame96
+    [junit] Hit - Frame95
+    [junit] Hit - Frame94
+    [junit] Hit - Frame93
+    [junit] Hit - Frame92
+    [junit] Hit - Frame91
+    [junit] Hit - Frame90
+    [junit] Hit - Frame89
+    [junit] Hit - Frame88
+    [junit] Hit - Frame87
+    [junit] Hit - Frame86
+    [junit] Hit - Frame85
+    [junit] Hit - Frame84
+    [junit] Hit - Frame83
+    [junit] Hit - Frame82
+    [junit] Hit - Frame81
+    [junit] Hit - Frame80
+    [junit] Hit - Frame79
+    [junit] Hit - Frame78
+    [junit] Hit - Frame77
+    [junit] Hit - Frame76
+    [junit] Hit - Frame75
+    [junit] Hit - Frame74
+    [junit] Hit - Frame73
+    [junit] Hit - Frame72
+    [junit] Hit - Frame71
+    [junit] Hit - Frame70
+    [junit] Hit - Frame69
+    [junit] Hit - Frame68
+    [junit] Hit - Frame67
+    [junit] Hit - Frame66
+    [junit] Hit - Frame65
+    [junit] Hit - Frame64
+    [junit] Hit - Frame63
+    [junit] Hit - Frame62
+    [junit] Hit - Frame61
+    [junit] Hit - Frame60
+    [junit] Hit - Frame59
+    [junit] Hit - Frame58
+    [junit] Hit - Frame57
+    [junit] Hit - Frame56
+    [junit] Hit - Frame55
+    [junit] Hit - Frame54
+    [junit] Hit - Frame53
+    [junit] Hit - Frame52
+    [junit] Hit - Frame51
+    [junit] Hit - Frame50
+    [junit] Hit - Frame49
+    [junit] Hit - Frame48
+    [junit] Hit - Frame47
+    [junit] Hit - Frame46
+    [junit] Hit - Frame45
+    [junit] Hit - Frame44
+    [junit] Hit - Frame43
+    [junit] Hit - Frame42
+    [junit] Hit - Frame41
+    [junit] Hit - Frame40
+    [junit] Hit - Frame39
+    [junit] Hit - Frame38
+    [junit] Hit - Frame37
+    [junit] Hit - Frame36
+    [junit] Hit - Frame35
+    [junit] Hit - Frame34
+    [junit] Hit - Frame33
+    [junit] Hit - Frame32
+    [junit] Hit - Frame31
+    [junit] Hit - Frame30
+    [junit] Hit - Frame29
+    [junit] Hit - Frame28
+    [junit] Hit - Frame27
+    [junit] Hit - Frame26
+    [junit] Hit - Frame25
+    [junit] Hit - Frame24
+    [junit] Hit - Frame23
+    [junit] Hit - Frame22
+    [junit] Hit - Frame21
+    [junit] Hit - Frame20
+    [junit] Hit - Frame19
+    [junit] BufferPolicyTest scan complete, reporting number of hits and misses
+    [junit] Number of Hits: 202
+    [junit] Number of Misses: 101
+    [junit] -------------------------------------------------------------------
+    [junit] BufferPolicyTest testing MRU on scan
+    [junit] New Buffer, Size 120 pages
+    [junit] Sequential scan of file ID: -1459969170, 3 times
+    [junit] Hit - Frame119
+    [junit] Hit - Frame118
+    [junit] Hit - Frame117
+    [junit] Hit - Frame116
+    [junit] Hit - Frame115
+    [junit] Hit - Frame114
+    [junit] Hit - Frame113
+    [junit] Hit - Frame112
+    [junit] Hit - Frame111
+    [junit] Hit - Frame110
+    [junit] Hit - Frame109
+    [junit] Hit - Frame108
+    [junit] Hit - Frame107
+    [junit] Hit - Frame106
+    [junit] Hit - Frame105
+    [junit] Hit - Frame104
+    [junit] Hit - Frame103
+    [junit] Hit - Frame102
+    [junit] Hit - Frame101
+    [junit] Hit - Frame100
+    [junit] Hit - Frame99
+    [junit] Hit - Frame98
+    [junit] Hit - Frame97
+    [junit] Hit - Frame96
+    [junit] Hit - Frame95
+    [junit] Hit - Frame94
+    [junit] Hit - Frame93
+    [junit] Hit - Frame92
+    [junit] Hit - Frame91
+    [junit] Hit - Frame90
+    [junit] Hit - Frame89
+    [junit] Hit - Frame88
+    [junit] Hit - Frame87
+    [junit] Hit - Frame86
+    [junit] Hit - Frame85
+    [junit] Hit - Frame84
+    [junit] Hit - Frame83
+    [junit] Hit - Frame82
+    [junit] Hit - Frame81
+    [junit] Hit - Frame80
+    [junit] Hit - Frame79
+    [junit] Hit - Frame78
+    [junit] Hit - Frame77
+    [junit] Hit - Frame76
+    [junit] Hit - Frame75
+    [junit] Hit - Frame74
+    [junit] Hit - Frame73
+    [junit] Hit - Frame72
+    [junit] Hit - Frame71
+    [junit] Hit - Frame70
+    [junit] Hit - Frame69
+    [junit] Hit - Frame68
+    [junit] Hit - Frame67
+    [junit] Hit - Frame66
+    [junit] Hit - Frame65
+    [junit] Hit - Frame64
+    [junit] Hit - Frame63
+    [junit] Hit - Frame62
+    [junit] Hit - Frame61
+    [junit] Hit - Frame60
+    [junit] Hit - Frame59
+    [junit] Hit - Frame58
+    [junit] Hit - Frame57
+    [junit] Hit - Frame56
+    [junit] Hit - Frame55
+    [junit] Hit - Frame54
+    [junit] Hit - Frame53
+    [junit] Hit - Frame52
+    [junit] Hit - Frame51
+    [junit] Hit - Frame50
+    [junit] Hit - Frame49
+    [junit] Hit - Frame48
+    [junit] Hit - Frame47
+    [junit] Hit - Frame46
+    [junit] Hit - Frame45
+    [junit] Hit - Frame44
+    [junit] Hit - Frame43
+    [junit] Hit - Frame42
+    [junit] Hit - Frame41
+    [junit] Hit - Frame40
+    [junit] Hit - Frame39
+    [junit] Hit - Frame38
+    [junit] Hit - Frame37
+    [junit] Hit - Frame36
+    [junit] Hit - Frame35
+    [junit] Hit - Frame34
+    [junit] Hit - Frame33
+    [junit] Hit - Frame32
+    [junit] Hit - Frame31
+    [junit] Hit - Frame30
+    [junit] Hit - Frame29
+    [junit] Hit - Frame28
+    [junit] Hit - Frame27
+    [junit] Hit - Frame26
+    [junit] Hit - Frame25
+    [junit] Hit - Frame24
+    [junit] Hit - Frame23
+    [junit] Hit - Frame22
+    [junit] Hit - Frame21
+    [junit] Hit - Frame20
+    [junit] Hit - Frame19
+    [junit] Hit - Frame119
+    [junit] Hit - Frame118
+    [junit] Hit - Frame117
+    [junit] Hit - Frame116
+    [junit] Hit - Frame115
+    [junit] Hit - Frame114
+    [junit] Hit - Frame113
+    [junit] Hit - Frame112
+    [junit] Hit - Frame111
+    [junit] Hit - Frame110
+    [junit] Hit - Frame109
+    [junit] Hit - Frame108
+    [junit] Hit - Frame107
+    [junit] Hit - Frame106
+    [junit] Hit - Frame105
+    [junit] Hit - Frame104
+    [junit] Hit - Frame103
+    [junit] Hit - Frame102
+    [junit] Hit - Frame101
+    [junit] Hit - Frame100
+    [junit] Hit - Frame99
+    [junit] Hit - Frame98
+    [junit] Hit - Frame97
+    [junit] Hit - Frame96
+    [junit] Hit - Frame95
+    [junit] Hit - Frame94
+    [junit] Hit - Frame93
+    [junit] Hit - Frame92
+    [junit] Hit - Frame91
+    [junit] Hit - Frame90
+    [junit] Hit - Frame89
+    [junit] Hit - Frame88
+    [junit] Hit - Frame87
+    [junit] Hit - Frame86
+    [junit] Hit - Frame85
+    [junit] Hit - Frame84
+    [junit] Hit - Frame83
+    [junit] Hit - Frame82
+    [junit] Hit - Frame81
+    [junit] Hit - Frame80
+    [junit] Hit - Frame79
+    [junit] Hit - Frame78
+    [junit] Hit - Frame77
+    [junit] Hit - Frame76
+    [junit] Hit - Frame75
+    [junit] Hit - Frame74
+    [junit] Hit - Frame73
+    [junit] Hit - Frame72
+    [junit] Hit - Frame71
+    [junit] Hit - Frame70
+    [junit] Hit - Frame69
+    [junit] Hit - Frame68
+    [junit] Hit - Frame67
+    [junit] Hit - Frame66
+    [junit] Hit - Frame65
+    [junit] Hit - Frame64
+    [junit] Hit - Frame63
+    [junit] Hit - Frame62
+    [junit] Hit - Frame61
+    [junit] Hit - Frame60
+    [junit] Hit - Frame59
+    [junit] Hit - Frame58
+    [junit] Hit - Frame57
+    [junit] Hit - Frame56
+    [junit] Hit - Frame55
+    [junit] Hit - Frame54
+    [junit] Hit - Frame53
+    [junit] Hit - Frame52
+    [junit] Hit - Frame51
+    [junit] Hit - Frame50
+    [junit] Hit - Frame49
+    [junit] Hit - Frame48
+    [junit] Hit - Frame47
+    [junit] Hit - Frame46
+    [junit] Hit - Frame45
+    [junit] Hit - Frame44
+    [junit] Hit - Frame43
+    [junit] Hit - Frame42
+    [junit] Hit - Frame41
+    [junit] Hit - Frame40
+    [junit] Hit - Frame39
+    [junit] Hit - Frame38
+    [junit] Hit - Frame37
+    [junit] Hit - Frame36
+    [junit] Hit - Frame35
+    [junit] Hit - Frame34
+    [junit] Hit - Frame33
+    [junit] Hit - Frame32
+    [junit] Hit - Frame31
+    [junit] Hit - Frame30
+    [junit] Hit - Frame29
+    [junit] Hit - Frame28
+    [junit] Hit - Frame27
+    [junit] Hit - Frame26
+    [junit] Hit - Frame25
+    [junit] Hit - Frame24
+    [junit] Hit - Frame23
+    [junit] Hit - Frame22
+    [junit] Hit - Frame21
+    [junit] Hit - Frame20
+    [junit] Hit - Frame19
+    [junit] BufferPolicyTest scan complete, reporting number of hits and misses
+    [junit] Number of Hits: 202
+    [junit] Number of Misses: 101
+    [junit] -------------------------------------------------------------------
+    [junit] BufferPolicyTest testing LRU on random accesses (checks that last usage is recorded in buffer)
+    [junit] New Buffer, Size 10 pages
+    [junit] Hit - Frame8
+    [junit] Hit - Frame7
+    [junit] Hit - Frame0
+    [junit] Hit - Frame1
+    [junit] Hit - Frame2
+    [junit] Hit - Frame7
+    [junit] Hit - Frame1
+    [junit] Hit - Frame7
+    [junit] Hit - Frame6
+    [junit] Hit - Frame8
+    [junit] BufferPolicyTest random accesses complete, reporting number of hits and misses
+    [junit] Number of Hits: 10
+    [junit] Number of Misses: 20
+    [junit] -------------------------------------------------------------------
+    [junit] BufferPolicyTest testing MRU on scan
+    [junit] New Buffer, Size 10 pages
+    [junit] BufferPolicyTest random accesses complete, reporting number of hits and misses
+    [junit] Hit - Frame8
+    [junit] Hit - Frame7
+    [junit] Hit - Frame6
+    [junit] Hit - Frame5
+    [junit] Hit - Frame9
+    [junit] Hit - Frame1
+    [junit] Hit - Frame3
+    [junit] Hit - Frame4
+    [junit] BufferPolicyTest scan complete, reporting number of hits and misses
+    [junit] Number of Hits: 8
+    [junit] Number of Misses: 22
+    [junit] ------------- ---------------- ---------------
+    [junit] 
+    [junit] Testcase: testBufferReplacementPolicies took 0.951 sec
+
+BUILD SUCCESSFUL
+Total time: 2 seconds

@@ -1,0 +1,148 @@
+import java.io.IOException;
+import java.io.StringReader;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.conf.Configured;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
+import org.apache.hadoop.util.Tool;
+import org.apache.hadoop.util.ToolRunner;
+
+import chesspresso.game.Game;
+import chesspresso.pgn.PGNReader;
+
+/** Caculate the percentage of every word. */
+public class ChessGameB extends Configured implements Tool {
+	public static class MyMapper extends Mapper<LongWritable, Text, Text, Text> {
+    
+    /** mapper(). */
+    @Override
+    public void map(final LongWritable key, final Text value, final Context context)
+        throws IOException, InterruptedException {
+    	String line = value.toString().replace("\n\n[Event ","");
+    	
+		line = "[Event " + line;
+    	StringReader sreader = new StringReader(line);
+    	try{
+			PGNReader parser = new PGNReader(sreader, "parse");
+			Game game = parser.parseGame();
+			if(!game.toString().contains("null")){
+				String B = game.getBlack();
+				String W = game.getWhite();
+				int R = game.getResult();
+				if(R==2){
+					context.write(new Text(B), new Text("B-W"));
+					context.write(new Text(W), new Text("W-L"));
+				}else if(R==1){
+					context.write(new Text(B), new Text("B-D"));
+					context.write(new Text(W), new Text("W-D"));
+				}else if(R==0){
+					context.write(new Text(B), new Text("B-L"));
+					context.write(new Text(W), new Text("W-W"));
+				}
+			}
+		}catch(Exception ee){
+			System.out.println(ee);
+		}
+    }
+  }
+
+
+  /** Reducer. */
+  public static class MyReducer extends Reducer<Text, Text, Text, Text> {
+    /** Implement reduce(). */
+	@Override
+    public void reduce(final Text key, final Iterable<Text> values, final Context context)
+        throws IOException, InterruptedException {
+		int bw=0,bl=0,bd=0,ww=0,wl=0,wd=0,wSum=0,bSum=0;
+		for (Text val : values) {
+			String v= val.toString();
+	    	String[] s = v.split("-");
+	    	int num = 1;
+	    	if(s[0].equals("B")){
+    		  bSum+=num;
+    		  if(s[1].equals("W")){
+    			bw +=  num;
+      		  }else if(s[1].equals("L")){
+      			bl += num;
+      		  }else if(s[1].equals("D")){
+      			bd += num;
+      		  }
+	    	}else if(s[0].equals("W")){
+    		  wSum+=num;
+    		  if(s[1].equals("W")){
+    			ww +=  num;
+    		  }else if(s[1].equals("L")){
+    			wl += num;
+    		  }else if(s[1].equals("D")){
+    			wd += num;
+    		  }
+	    	} 
+		}
+		if(wSum != 0){
+			float wwf= (float)ww/wSum;
+			float wlf= (float)wl/wSum;
+			float wdf= (float)wd/wSum;
+			context.write(key, new Text("White "+wwf+" "+wlf+" "+wdf));
+		}
+		if(bSum != 0){
+			float bwf= (float)bw/bSum;
+			float blf= (float)bl/bSum;
+			float bdf= (float)bd/bSum;
+			context.write(key, new Text("Black "+bwf+" "+blf+" "+bdf));
+		}
+		
+      
+    }
+  }
+  
+  /**
+   * Implement run().
+   */
+  @Override
+  public int run(final String[] args) throws Exception {
+    final Path input = new Path(args[0]);
+    final Path output = new Path(args[1]);
+
+    final Configuration conf = this.getConf();
+    FileSystem fs = FileSystem.get(conf);
+    
+    final Job job = Job.getInstance(conf, "Chess Game B-V2: " + input + "->" + output);
+    job.setJarByClass(ChessGameB.class);
+
+    job.setMapperClass(MyMapper.class);
+    //job.setCombinerClass(LongSumReducer.class);
+    job.setReducerClass(MyReducer.class);
+    
+    job.setOutputKeyClass(Text.class);
+    job.setOutputValueClass(Text.class);
+
+    job.setInputFormatClass(PGNInputFormat.class);
+    job.setOutputFormatClass(TextOutputFormat.class);
+    
+    FileInputFormat.addInputPath(job, input);
+    FileInputFormat.setInputDirRecursive(job, true);
+    
+    TextOutputFormat.setOutputPath(job, new Path(args[1]));
+
+    job.waitForCompletion(true);
+    
+    return job.waitForCompletion(true) ? 0 : 1;
+    
+  }
+
+  /**
+   * main.
+   */
+  public static void main(final String[] args) throws Exception {
+    final int returnCode = ToolRunner.run(new Configuration(), new ChessGameB(), args);
+    System.exit(returnCode);
+  }
+}

@@ -1,0 +1,194 @@
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.conf.Configured;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.io.WritableComparable;
+import org.apache.hadoop.io.WritableComparator;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Partitioner;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
+import org.apache.hadoop.mapreduce.lib.reduce.LongSumReducer;
+import org.apache.hadoop.util.Tool;
+import org.apache.hadoop.util.ToolRunner;
+
+
+/** Caculate the percentage of every word. */
+public class ChessGameC extends Configured implements Tool {
+	private static final String OUTPUT_PATH = "intermediate_output/chessgameA";
+
+	public static class MyMapper extends
+			Mapper<LongWritable, Text, LongWritable, LongWritable> {
+		private static final transient LongWritable one = new LongWritable(1);
+
+		/** mapper(). */
+		@Override
+		public void map(final LongWritable key, final Text value,
+				final Context context) throws IOException, InterruptedException {
+			if (value.toString().contains("PlyCount")) {
+				String count = value.toString().replaceAll("[^0-9]", "");
+				context.write(new LongWritable(Integer.parseInt(count)), one);
+			}
+		}
+	}
+	
+	/** Reducer. */
+	public static class MyReducer extends
+			Reducer<LongWritable, LongWritable, LongWritable, LongWritable> {
+		/** Implement reduce(). */
+		@Override
+		public void reduce(final LongWritable key,
+				final Iterable<LongWritable> values, final Context context)
+				throws IOException, InterruptedException {
+			int sum = 0;
+			for (LongWritable val : values) {
+				sum += val.get();
+			}
+			context.write(key, new LongWritable(sum));
+		}
+	}
+	
+	public static class MyMapper2 extends Mapper<LongWritable, LongWritable, Text, Text> {
+		//** mapper(). */
+		@Override
+		public void map(final LongWritable key, final LongWritable value,
+				final Context context) throws IOException, InterruptedException {
+			context.write(new Text("1-"+value.toString()), new Text( key.toString()));
+		}
+	}
+
+	public static class MyReducer2 extends
+			Reducer<Text, Text, Text, Text> {
+		/** Implement reduce(). */
+		@Override
+		public void reduce(final Text key,
+				final Iterable<Text> values, final Context context)
+				throws IOException, InterruptedException {
+			  
+			  System.out.println();
+		}
+	}
+
+	public static class SortByValueKeyComparator extends WritableComparator {
+		protected SortByValueKeyComparator(){}
+		
+		@SuppressWarnings("rawtypes")
+		@Override
+		public int compare(WritableComparable w1, WritableComparable w2) {
+			Text k1 = (Text) w1;
+			Text k2 = (Text) w2;
+			Integer i1 = Integer.parseInt(k1.toString().split("-")[0]);
+			Integer i2 = Integer.parseInt(k2.toString().split("-")[1]);
+			
+			return -1*i1.compareTo(i2);
+		}
+	}
+	
+	public class SortByValueGroupComparator extends WritableComparator {
+		protected SortByValueGroupComparator(){}
+		@SuppressWarnings("rawtypes")
+		@Override
+		public int compare(WritableComparable w1, WritableComparable w2) {
+			Text k1 = (Text) w1;
+			Text k2 = (Text) w2;
+			Integer i1 = Integer.parseInt(k1.toString().split("-")[0]);
+			Integer i2 = Integer.parseInt(k2.toString().split("-")[0]);
+			
+			return i1.compareTo(i2);
+		}
+	}
+
+	public class SortByValuePartitioner extends Partitioner<Text, LongWritable> {
+		@Override
+		public int getPartition(Text key, LongWritable val,int numPartitions) {
+			int hash = Integer.parseInt(key.toString().split("-")[0]); 
+			return hash % numPartitions;
+		}
+	}
+	
+
+	/**
+	 * Implement run().
+	 */
+	@Override
+	public int run(final String[] args) throws Exception {
+		final Path input = new Path(args[0]);
+		final Path output = new Path(args[1]);
+
+		final Configuration conf = this.getConf();
+		Path outputDir = new Path(OUTPUT_PATH);
+		FileSystem fs = FileSystem.get(conf);
+		fs.delete(outputDir, true);
+		final Job job = Job.getInstance(conf, "ChessGameC: " + input + "->"
+				+ output);
+		job.setJarByClass(ChessGameC.class);
+
+		job.setMapperClass(MyMapper.class);
+		job.setCombinerClass(MyReducer.class);
+		job.setReducerClass(MyReducer.class);
+
+		job.setMapOutputKeyClass(LongWritable.class);
+		job.setMapOutputValueClass(LongWritable.class);
+		
+		job.setOutputKeyClass(LongWritable.class);
+		job.setOutputValueClass(LongWritable.class);
+
+		job.setInputFormatClass(TextInputFormat.class);
+		job.setOutputFormatClass(TextOutputFormat.class);
+
+		
+		FileInputFormat.addInputPath(job, input);
+		FileInputFormat.setInputDirRecursive(job, true);
+		
+		TextOutputFormat.setOutputPath(job, new Path(OUTPUT_PATH));
+
+	    job.waitForCompletion(true);
+
+	    
+	     //* Job 2
+	     
+	    final Job job2 = Job.getInstance(conf, "ChessGameC: " + input + "->" + output);
+	    
+	    job2.setJarByClass(ChessGameC.class);
+
+	    job2.setMapperClass(MyMapper2.class);
+	    job2.setReducerClass(MyReducer2.class);
+	    job2.setNumReduceTasks(1);
+
+	    job2.setOutputKeyClass(Text.class);
+	    job2.setOutputValueClass(Text.class);
+
+	    job2.setInputFormatClass(TextInputFormat.class);
+	    job2.setOutputFormatClass(TextOutputFormat.class);
+	    job.setGroupingComparatorClass(SortByValueGroupComparator.class);
+	    job2.setSortComparatorClass(SortByValueKeyComparator.class);
+	    job2.setPartitionerClass(SortByValuePartitioner.class);
+		
+	    
+	    TextInputFormat.addInputPath(job2, new Path(OUTPUT_PATH));
+	    FileInputFormat.setInputDirRecursive(job2, true);
+	    TextOutputFormat.setOutputPath(job, new Path(args[1]));
+
+	    return job2.waitForCompletion(true) ? 0 : 1;
+	}
+
+	/**
+	 * main.
+	 */
+	public static void main(final String[] args) throws Exception {
+		final int returnCode = ToolRunner.run(new Configuration(),
+				new ChessGameC(), args);
+		System.exit(returnCode);
+	}
+}

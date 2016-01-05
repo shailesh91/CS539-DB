@@ -1,0 +1,164 @@
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.conf.Configured;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
+import org.apache.hadoop.mapreduce.lib.reduce.LongSumReducer;
+import org.apache.hadoop.util.Tool;
+import org.apache.hadoop.util.ToolRunner;
+
+/** Caculate the percentage of every word. */
+public class ChessGameA extends Configured implements Tool {
+	private static final String OUTPUT_PATH = "intermediate_output/chessgameA";
+	public static class MyMapper extends Mapper<LongWritable, Text, Text, LongWritable> {
+    private static final transient LongWritable one = new LongWritable(1);
+    
+    /** mapper(). */
+    @Override
+    public void map(final LongWritable key, final Text value, final Context context)
+        throws IOException, InterruptedException {
+    	if(value.toString().contains("Result") && value.toString().contains("0-1")){
+			context.write(new Text("Black"), one);
+		}else if(value.toString().contains("Result") && value.toString().contains("1/2-1/2")){
+			context.write(new Text("Draw"), one);
+		}else if(value.toString().contains("Result") && value.toString().contains("1-0")){
+			context.write(new Text("White"), one);
+		}
+    }
+  }
+
+
+  /** Reducer. */
+  public static class MyReducer extends Reducer<Text, LongWritable, Text, LongWritable> {
+    /** Implement reduce(). */
+	@Override
+    public void reduce(final Text key, final Iterable<LongWritable> values, final Context context)
+        throws IOException, InterruptedException {
+      int sum = 0;
+      for (LongWritable val : values) {
+        sum += val.get();
+      }
+      context.write(key, new LongWritable(sum));
+    }
+  }
+  
+  public static class MyMapper2 extends Mapper<LongWritable, Text, Text, Text> {
+	    private static final Text KEY = new Text("KEY");
+	    
+	  /** mapper(). */
+	  @Override
+	  public void map(final LongWritable key, final Text value, final Context context)
+	        throws IOException, InterruptedException {
+		  	context.write(KEY, value);
+	      }
+	  }
+
+
+	  /** Reducer. */
+	  public static class MyReducer2 extends Reducer<Text, Text, Text, Text> {
+	    /** Implement reduce(). */
+		@Override
+	    public void reduce(final Text key, final Iterable<Text> values, final Context context)
+	        throws IOException, InterruptedException {
+	      
+		  HashMap<String, Integer> hmap = new HashMap<String, Integer>();
+	    	  
+		  int sum = 0;
+	      for (Text val : values) {
+	    	  String[] s = (val.toString()).split("\\s+");
+	    	  //System.out.println(s[1]);
+	    	  hmap.put(s[0], Integer.parseInt(s[1]));
+	    	  sum += Integer.parseInt(s[1]);
+	      }
+	      
+	      //values = values.iterator();
+	      Set set = hmap.entrySet();
+	      Iterator iter = set.iterator();
+	      while(iter.hasNext()){
+	    	  Map.Entry mentry = (Map.Entry)iter.next();
+	    	  float x= Float.parseFloat(mentry.getValue().toString())/sum;
+	    	  String x1 = mentry.getValue().toString()+" "+x;
+	    	  context.write(new Text(mentry.getKey().toString()), new Text(x1));
+	      }
+	      
+	    }
+	  }
+
+  /**
+   * Implement run().
+   */
+  @Override
+  public int run(final String[] args) throws Exception {
+    final Path input = new Path(args[0]);
+    final Path output = new Path(args[1]);
+
+    final Configuration conf = this.getConf();
+    Path outputDir = new Path(OUTPUT_PATH);
+    FileSystem fs = FileSystem.get(conf);
+    fs.delete(outputDir, true);
+    final Job job = Job.getInstance(conf, "WordCount: " + input + "->" + output);
+    job.setJarByClass(ChessGameA.class);
+
+    job.setMapperClass(MyMapper.class);
+    job.setCombinerClass(MyReducer.class);
+    job.setReducerClass(MyReducer.class);
+    
+    job.setOutputKeyClass(Text.class);
+    job.setOutputValueClass(LongWritable.class);
+
+    job.setInputFormatClass(TextInputFormat.class);
+    job.setOutputFormatClass(TextOutputFormat.class);
+
+    FileInputFormat.addInputPath(job, input);
+    FileInputFormat.setInputDirRecursive(job, true);
+    
+    TextOutputFormat.setOutputPath(job, new Path(OUTPUT_PATH));
+
+    job.waitForCompletion(true);
+
+    /*
+     * Job 2
+     */
+    final Job job2 = Job.getInstance(conf, "ChessGameA: " + input + "->" + output);
+    
+    job2.setJarByClass(ChessGameA.class);
+
+    job2.setMapperClass(MyMapper2.class);
+    job2.setReducerClass(MyReducer2.class);
+    job2.setNumReduceTasks(1);
+
+    job2.setOutputKeyClass(Text.class);
+    job2.setOutputValueClass(Text.class);
+
+    job2.setInputFormatClass(TextInputFormat.class);
+    job2.setOutputFormatClass(TextOutputFormat.class);
+
+    TextInputFormat.addInputPath(job2, new Path(OUTPUT_PATH));
+    FileInputFormat.setInputDirRecursive(job2, true);
+    TextOutputFormat.setOutputPath(job2, new Path(args[1]));
+
+    return job2.waitForCompletion(true) ? 0 : 1;
+    //return job.waitForCompletion(true) ? 0 : 1;
+  }
+
+  /**
+   * main.
+   */
+  public static void main(final String[] args) throws Exception {
+    final int returnCode = ToolRunner.run(new Configuration(), new ChessGameA(), args);
+    System.exit(returnCode);
+  }
+}

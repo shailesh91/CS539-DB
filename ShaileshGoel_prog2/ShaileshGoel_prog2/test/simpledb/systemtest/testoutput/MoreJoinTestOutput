@@ -1,0 +1,89 @@
+Buildfile: /Users/amelie/Teaching/sol_simpledb_437_hw1/build.xml
+
+compile:
+
+testcompile:
+
+runtest:
+    [junit] Running simpledb.systemtest.MoreJoinTest
+    [junit] Testsuite: simpledb.systemtest.MoreJoinTest
+    [junit] Tests run: 9, Failures: 0, Errors: 0, Time elapsed: 0.557 sec
+    [junit] Tests run: 9, Failures: 0, Errors: 0, Time elapsed: 0.557 sec
+    [junit] ------------- Standard Output ---------------
+    [junit] --------------------------------------------
+    [junit] JoinTest - SNL on small relations
+    [junit] JoinTest Relation 1 is  1  pages
+    [junit] JoinTest Relation 2 is  1  pages
+    [junit] Outer Relation: 1 pages read
+    [junit] Inner Relation: 100 pages read
+    [junit] Number of Joined Tuples: 112
+    [junit] --------------------------------------------
+    [junit] JoinTest - SNL on medium relations
+    [junit] JoinTest Relation 1 is  3  pages
+    [junit] JoinTest Relation 2 is  3  pages
+    [junit] Outer Relation: 3 pages read
+    [junit] Inner Relation: 1800 pages read
+    [junit] Number of Joined Tuples: 1588
+    [junit] --------------------------------------------
+    [junit] JoinTest - SNL on large relations
+    [junit] JoinTest Relation 1 is  8  pages
+    [junit] JoinTest Relation 2 is  8  pages
+    [junit] Outer Relation: 8 pages read
+    [junit] Inner Relation: 16000 pages read
+    [junit] Number of Joined Tuples: 79921
+    [junit] --------------------------------------------
+    [junit] JoinTest - SNL on small sorted relations
+    [junit] JoinTest Relation 1 is  1  pages
+    [junit] JoinTest Relation 2 is  1  pages
+    [junit] Outer Relation: 1 pages read
+    [junit] Inner Relation: 100 pages read
+    [junit] Number of Joined Tuples: 148
+    [junit] --------------------------------------------
+    [junit] JoinTest - SNL on medium sorted relations
+    [junit] JoinTest Relation 1 is  3  pages
+    [junit] JoinTest Relation 2 is  3  pages
+    [junit] Outer Relation: 3 pages read
+    [junit] Inner Relation: 1800 pages read
+    [junit] Number of Joined Tuples: 1698
+    [junit] --------------------------------------------
+    [junit] JoinTest - SNL on large sortedrelations
+    [junit] JoinTest Relation 1 is  8  pages
+    [junit] JoinTest Relation 2 is  8  pages
+    [junit] Outer Relation: 8 pages read
+    [junit] Inner Relation: 16000 pages read
+    [junit] Number of Joined Tuples: 5045
+    [junit] --------------------------------------------
+    [junit] JoinTest - SMJ on small sorted relations
+    [junit] JoinTest Relation 1 is  1  pages
+    [junit] JoinTest Relation 2 is  1  pages
+    [junit] Outer Relation: 1 pages read
+    [junit] Inner Relation: 1 pages read
+    [junit] Number of Joined Tuples: 148
+    [junit] --------------------------------------------
+    [junit] JoinTest - SMJ on medium sorted relations
+    [junit] JoinTest Relation 1 is  3  pages
+    [junit] JoinTest Relation 2 is  3  pages
+    [junit] Outer Relation: 3 pages read
+    [junit] Inner Relation: 3 pages read
+    [junit] Number of Joined Tuples: 1698
+    [junit] --------------------------------------------
+    [junit] JoinTest - SMJ on large sorted relations
+    [junit] JoinTest Relation 1 is  8  pages
+    [junit] JoinTest Relation 2 is  8  pages
+    [junit] Outer Relation: 7 pages read
+    [junit] Inner Relation: 116 pages read
+    [junit] Number of Joined Tuples: 5045
+    [junit] ------------- ---------------- ---------------
+    [junit] 
+    [junit] Testcase: testSmallSNL took 0.037 sec
+    [junit] Testcase: testMediumSNL took 0.107 sec
+    [junit] Testcase: testLargeSNL took 0.255 sec
+    [junit] Testcase: testSmallSNLonSorted took 0.001 sec
+    [junit] Testcase: testMediumSNLonSorted took 0.013 sec
+    [junit] Testcase: testLargeSNLonSorted took 0.09 sec
+    [junit] Testcase: testSmallSMJ took 0.002 sec
+    [junit] Testcase: testMediumSMJ took 0.007 sec
+    [junit] Testcase: testLargeSMJ took 0.028 sec
+
+BUILD SUCCESSFUL
+Total time: 1 second

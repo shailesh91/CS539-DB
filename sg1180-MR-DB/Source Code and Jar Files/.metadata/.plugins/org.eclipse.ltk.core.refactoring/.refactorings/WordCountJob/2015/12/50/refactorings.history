@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 8 elements from project &apos;WordCountJob&apos;&#x0A;- Original project: &apos;WordCountJob&apos;&#x0A;- Original elements:&#x0A;     cga.jar&#x0A;     cgb.jar&#x0A;     cgb2.jar&#x0A;     cgc.jar&#x0A;     wc.jar&#x0A;     wc1.jar&#x0A;     wcp.jar&#x0A;     wordcount.jar" description="Delete elements" element1="src/cgc.jar" element2="src/cga.jar" element3="src/wc1.jar" element4="src/cgb.jar" element5="src/wcp.jar" element6="src/cgb2.jar" element7="src/wc.jar" element8="src/wordcount.jar" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="8" stamp="1449793734943" subPackages="false" version="1.0"/>
+</session>
